@@ -1,0 +1,153 @@
+# JIRANI-TV-
+tv streaming online-tv 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JIRANI TV - Beta</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f2f2f2;
+}
+header{
+  background:#0b3c5d;
+  color:#fff;
+  padding:20px;
+  text-align:center;
+}
+.container{
+  padding:15px;
+}
+.card{
+  background:#fff;
+  padding:15px;
+  margin-bottom:15px;
+  border-radius:8px;
+}
+button{
+  width:100%;
+  padding:10px;
+  background:#0b3c5d;
+  color:white;
+  border:none;
+  border-radius:5px;
+  font-size:16px;
+}
+button.lock{
+  background:#a00;
+}
+.hidden{
+  display:none;
+}
+.category{
+  padding:10px;
+  border-bottom:1px solid #ddd;
+}
+footer{
+  text-align:center;
+  padding:10px;
+  font-size:14px;
+  color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>JIRANI TV</h1>
+  <p>Online TV Platform • Beta</p>
+</header>
+
+<div class="container">
+
+<!-- LOGIN -->
+<div class="card" id="loginBox">
+  <h2>Login</h2>
+  <p>Username</p>
+  <input type="text" id="user" placeholder="Enter username" style="width:100%;padding:8px">
+  <p>Password</p>
+  <input type="password" id="pass" placeholder="Enter password" style="width:100%;padding:8px">
+  <br><br>
+  <button onclick="login()">Login</button>
+  <p style="font-size:13px;color:#666">Demo login • Any username & password</p>
+</div>
+
+<!-- MAIN -->
+<div class="hidden" id="mainBox">
+
+<div class="card">
+  <h2>🎁 Free Trial</h2>
+  <p>Remaining Time:</p>
+  <h3 id="timer">02:00:00</h3>
+</div>
+
+<div class="card">
+  <h2>📺 Channels</h2>
+  <div class="category">📰 News</div>
+  <div class="category">⚽ Sports</div>
+  <div class="category">🎬 Movies</div>
+  <div class="category">🎵 Music</div>
+  <div class="category">👶 Kids</div>
+</div>
+
+<div class="card">
+  <h2>💳 Paid TV</h2>
+  <p>Subscribe to unlock premium channels</p>
+  <button>Subscribe (Coming Soon)</button>
+</div>
+
+<div class="card">
+  <h2>🔞 Adult Content</h2>
+  <p>Protected by PIN</p>
+  <button class="lock" onclick="adultLock()">Unlock Adult</button>
+</div>
+
+</div>
+
+</div>
+
+<footer>
+  © 2025 JIRANI TV • Beta Version
+</footer>
+
+<script>
+function login(){
+  document.getElementById("loginBox").style.display="none";
+  document.getElementById("mainBox").style.display="block";
+  startTimer();
+}
+
+// 2 HOURS TIMER
+let seconds = 7200;
+function startTimer(){
+  setInterval(()=>{
+    if(seconds<=0){
+      alert("Free Trial Ended");
+      location.reload();
+    }
+    seconds--;
+    let h = String(Math.floor(seconds/3600)).padStart(2,"0");
+    let m = String(Math.floor((seconds%3600)/60)).padStart(2,"0");
+    let s = String(seconds%60).padStart(2,"0");
+    document.getElementById("timer").innerText = h+":"+m+":"+s;
+  },1000);
+}
+
+// ADULT LOCK
+function adultLock(){
+  let pin = prompt("Enter Adult PIN");
+  if(pin==="1234"){
+    alert("Adult Content Unlocked (Demo)");
+  }else{
+    alert("Wrong PIN");
+  }
+}
+</script>
+
+</body>
+</html>
